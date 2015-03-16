@@ -26,7 +26,7 @@ public class HawkularSeleniumWebDriver implements
 			.getProperty("hawkularUrl") : "http://localhost:8080";
 
 	public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication(
-			"ahovsepy", "4dc20630-7c27-41c7-a943-a45c88c5eb5f");
+			"hawkularqe", "6d418ea3-19d4-44aa-8646-ca03fedd46f0");
 
 	private ThreadLocal<WebDriver> webDriver = new ThreadLocal<WebDriver>();
 
