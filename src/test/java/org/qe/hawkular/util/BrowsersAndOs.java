@@ -13,41 +13,41 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
-
 public class BrowsersAndOs {
 
-	public static List<String> readBrowsersAndOsFromFile() {
+    public static List<String> readBrowsersAndOsFromFile() {
 
-		List<String> browsersList = new ArrayList<String>();
-		Properties prop = new Properties();
-		InputStream input;
+        List<String> browsersList = new ArrayList<String>();
+        Properties prop = new Properties();
+        InputStream input;
 
-		try {
-			
-			input = new FileInputStream("src/test/resources/browserAndOs.properties");
-			prop.load(input);
-			
-			System.out.println("browsersAndOs.properties Loaded Succesfully");
+        try {
 
-			Set<String> browsers = prop.stringPropertyNames();
-			for (String browser : browsers) {
-				String browserVersionOsProperty = prop.getProperty(browser);
+            input = new FileInputStream(
+                    "src/test/resources/browserAndOs.properties");
+            prop.load(input);
 
-				browsersList.add(browserVersionOsProperty);
+            System.out.println("browsersAndOs.properties Loaded Succesfully");
 
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return browsersList;
-	}
-	
-	public static void main(String[] args) {
-		readBrowsersAndOsFromFile();
-	}
+            Set<String> browsers = prop.stringPropertyNames();
+            for (String browser : browsers) {
+                String browserVersionOsProperty = prop.getProperty(browser);
+
+                browsersList.add(browserVersionOsProperty);
+
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return browsersList;
+    }
+
+    public static void main(String[] args) {
+        readBrowsersAndOsFromFile();
+    }
 
 }
