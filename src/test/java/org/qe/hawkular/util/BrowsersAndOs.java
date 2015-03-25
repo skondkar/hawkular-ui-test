@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 import java.util.Set;
@@ -47,7 +48,11 @@ public class BrowsersAndOs {
     }
 
     public static void main(String[] args) {
-        readBrowsersAndOsFromFile();
+        
+            String generatedUsername = "str"+(new Date().getTime());
+            System.out.println(generatedUsername);
+        
+        
     }
 
 }

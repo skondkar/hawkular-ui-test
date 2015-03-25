@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="HawkularUITest">
+    <test name="RegistrationTest">
+        <classes>
+            <class name="org.qe.hawkular.tests.HawkularRegistrationTest" />
+            <methods>
+               <!--  <include name="hawkularRegistrationBasicTest"></include>  -->
+            </methods>
+        </classes>
+    </test>
+</suite>

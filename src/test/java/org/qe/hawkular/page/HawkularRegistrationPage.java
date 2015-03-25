@@ -2,7 +2,12 @@ package org.qe.hawkular.page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.qe.hawkular.element.HawkularManagementConsolePageConstants;
 import org.qe.hawkular.element.HawkularRegistrationPageConstants;
+import org.testng.Assert;
 
 public class HawkularRegistrationPage {
 
@@ -59,7 +64,6 @@ public class HawkularRegistrationPage {
 
     public HawkularRegistrationPage submitRegistrationForm() {
         driver.findElement(registerButtonLocator).click();
-        ;
 
         return this;
     }
@@ -74,5 +78,108 @@ public class HawkularRegistrationPage {
         typelastName(lastName);
         typeEmail(email);
         return submitRegistrationForm();
+    }
+
+    public boolean verifyRegCompleted() {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions
+                .presenceOfElementLocated(HawkularManagementConsolePageConstants.consoleImageAltLocator));
+        return driver.findElement(
+                HawkularManagementConsolePageConstants.consoleImageAltLocator)
+                .isDisplayed();
+    }
+
+    public boolean verifyMismatchPasswords() {
+
+        // return
+        // driver.getPageSource().contains(HawkularRegistrationPageConstants.mistmatchPasswordErrorMsg);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions
+                .presenceOfElementLocated(HawkularRegistrationPageConstants.mismatchPasswordError));
+        return driver.findElement(
+                HawkularRegistrationPageConstants.mismatchPasswordError)
+                .isDisplayed();
+    }
+
+    public boolean verifyNoPasswords() {
+
+        return driver.findElement(
+                HawkularRegistrationPageConstants.noPasswordError)
+                .isDisplayed();
+    }
+
+    public boolean verifyNoEmail() {
+
+        return driver.findElement(
+                HawkularRegistrationPageConstants.noEmailError).isDisplayed();
+    }
+
+    public boolean verifyNoFirstName() {
+
+        return driver.findElement(
+                HawkularRegistrationPageConstants.noFirstNameError)
+                .isDisplayed();
+    }
+
+    public boolean verifyNoLastName() {
+
+        return driver.findElement(
+                HawkularRegistrationPageConstants.noLastNameError)
+                .isDisplayed();
+    }
+
+    public boolean verifyInvalidEmail() {
+
+        return driver.findElement(
+                HawkularRegistrationPageConstants.invalidEmailError)
+                .isDisplayed();
+    }
+
+    public boolean verifyNoUsername() {
+
+        return driver.findElement(
+                HawkularRegistrationPageConstants.noUsernameError)
+                .isDisplayed();
+    }
+
+    public boolean verifyIncorrectPasswordFormat() {
+
+        return driver.findElement(
+                HawkularRegistrationPageConstants.noEmailError).isDisplayed();
+    }
+
+    public boolean verifyMismatchPassword() {
+
+        return driver.findElement(
+                HawkularRegistrationPageConstants.mismatchPasswordError)
+                .isDisplayed();
+    }
+
+    public boolean verifyPasswordMinLength() {
+
+        return driver.findElement(
+                HawkularRegistrationPageConstants.passwordMinLengthError)
+                .isDisplayed();
+    }
+
+    public boolean verifyPasswordUpperCase() {
+
+        return driver.findElement(
+                HawkularRegistrationPageConstants.passwordUpperCaseError)
+                .isDisplayed();
+    }
+
+    public boolean verifyPasswordSpecialChar() {
+
+        return driver.findElement(
+                HawkularRegistrationPageConstants.passwordSpecialCharError)
+                .isDisplayed();
+    }
+
+    public boolean verifyPasswordNumericChar() {
+
+        return driver.findElement(
+                HawkularRegistrationPageConstants.passwordNumericCharError)
+                .isDisplayed();
     }
 }
