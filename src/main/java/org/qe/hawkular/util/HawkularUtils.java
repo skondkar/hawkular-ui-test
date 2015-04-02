@@ -1,5 +1,6 @@
 package org.qe.hawkular.util;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class HawkularUtils {
@@ -15,5 +16,9 @@ public class HawkularUtils {
     public boolean assertTitle(String title) {
 
         return driver.getTitle().equals(title);
+    }
+
+    public void navigateTo(By navigationLink) {
+        driver.findElement(navigationLink).click();
     }
 }
