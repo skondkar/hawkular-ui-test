@@ -3,6 +3,7 @@ package org.qe.hawkular.page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.qe.hawkular.element.*;
+import org.qe.hawkular.util.HawkularUtils;
 
 public class HawkularLoginPage {
     private final WebDriver driver;
@@ -27,11 +28,9 @@ public class HawkularLoginPage {
         return this;
     }
 
-    public HawkularLoginPage navigateToRegistration() {
-        driver.findElement(registrationLink).click();
-        ;
-
-        return this;
+    public void navigateToRegistration(){
+        HawkularUtils utils = new HawkularUtils(driver);
+         utils.navigateTo(registrationLink);
     }
 
     public HawkularLoginPage typePassword(String password) {

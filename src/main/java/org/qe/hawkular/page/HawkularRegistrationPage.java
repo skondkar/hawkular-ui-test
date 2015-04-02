@@ -26,6 +26,7 @@ public class HawkularRegistrationPage {
     By confirmPasswordLocator = HawkularRegistrationPageConstants.confirmPasswordLocator;
     By registerButtonLocator = HawkularRegistrationPageConstants.registerButtonLocator;
 
+
     public HawkularRegistrationPage typeUsername(String username) {
         driver.findElement(usernameLocator).sendKeys(username);
 

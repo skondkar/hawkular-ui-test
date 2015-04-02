@@ -6,8 +6,8 @@
 	<groupId>com.saucelabs</groupId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>sauce_quickstart</name>
-	<description>A sample Maven project that demonstrates how to integrate Sauce OnDemand with WebDriver tests
+	<name>hawkular_ui_test</name>
+	<description>Hawkular UI test  integrated Sauce OnDemand with WebDriver tests
         that run using TestNG
     </description>
 
@@ -16,25 +16,21 @@
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
 			<version>6.1.1</version>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
 			<version>2.43.0</version>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
 			<version>2.6</version>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.saucelabs</groupId>
 			<artifactId>sauce_testng</artifactId>
 			<version>[1.0.0,)</version>
-			<scope>test</scope>
 		</dependency>
 
 	</dependencies>
@@ -56,7 +52,7 @@
                 <configuration>
                     <redirectTestOutputToFile>true</redirectTestOutputToFile>
                     <systemPropertyVariables>
-                        <environment>${hawkularUel}</environment>
+                        <environment>${hawkularUrl}</environment>
                     </systemPropertyVariables>
                     <suiteXmlFiles>
                         <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
