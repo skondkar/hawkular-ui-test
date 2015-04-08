@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="HawkularUITest">
-    <test name="RegistrationTest">
+    <test name="HawkualrLoginTest">
         <classes>
-            <class name="org.qe.hawkular.tests.HawkularRegistrationTest" />
+            <class name="org.qe.hawkular.tests.HawkualrLoginTest" />
+          <!--   
+          <class name="org.qe.hawkular.tests.HawkularRegistrationTest">
             <methods>
                <include name="hawkularRegistrationBasicTest"></include>
             </methods>
+            </class>
+            -->
         </classes>
     </test>
 </suite>

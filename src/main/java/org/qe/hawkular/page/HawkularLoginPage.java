@@ -6,21 +6,19 @@ import org.qe.hawkular.element.*;
 import org.qe.hawkular.util.HawkularUtils;
 
 public class HawkularLoginPage {
-    private final WebDriver driver;
+    public final WebDriver driver;
 
     public HawkularLoginPage(WebDriver driver) {
 
         this.driver = driver;
-//        if (HawkularLoginPageConstants.loginTitle.contains(driver.getTitle())) {
-//            throw new IllegalStateException("This is not the login page");
-//        }
     }
 
     By usernameLocator = HawkularLoginPageConstants.usernameLocator;
     By passwordLocator = HawkularLoginPageConstants.passwordLocator;
     By loginButtonLocator = HawkularLoginPageConstants.loginButtonLocator;
     By registrationLink = HawkularLoginPageConstants.registrationLink;
-
+    By backToLoginLink = HawkularRegistrationPageConstants.backToLoginLink;
+    By invalidUsernamePasswordError = HawkularLoginPageConstants.invalidUsernamePasswordError;
     
     public HawkularLoginPage typeUsername(String username) {
         driver.findElement(usernameLocator).sendKeys(username);
@@ -31,6 +29,11 @@ public class HawkularLoginPage {
     public void navigateToRegistration(){
         HawkularUtils utils = new HawkularUtils(driver);
          utils.navigateTo(registrationLink);
+    }
+    
+    public void navigateToLogin(){
+        HawkularUtils utils = new HawkularUtils(driver);
+         utils.navigateTo(backToLoginLink);
     }
 
     public HawkularLoginPage typePassword(String password) {
@@ -55,5 +58,18 @@ public class HawkularLoginPage {
         typeUsername(username);
         typePassword(password);
         return submitLogin();
+    }
+    
+    public HawkularLoginPage logout(){
+        driver.findElement(HawkularLoginPageConstants.logoutDropdown).click();
+        driver.findElement(HawkularLoginPageConstants.logoutLink).click();
+        return new HawkularLoginPage(driver);
+    }
+    
+    public boolean verifyInvalidUsernameOrPassword(){
+        HawkularUtils util = new HawkularUtils(driver);
+        return util.waitForElementPresent(invalidUsernamePasswordError);
+        
+        
     }
 }
