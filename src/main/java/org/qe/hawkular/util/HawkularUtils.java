@@ -2,6 +2,9 @@ package org.qe.hawkular.util;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.qe.hawkular.element.HawkularRegistrationPageConstants;
 
 public class HawkularUtils {
 
@@ -20,5 +23,12 @@ public class HawkularUtils {
 
     public void navigateTo(By navigationLink) {
         driver.findElement(navigationLink).click();
+    }
+
+    public boolean waitForElementPresent(By element) {
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.presenceOfElementLocated(element));
+        return driver.findElement(element).isDisplayed();
     }
 }

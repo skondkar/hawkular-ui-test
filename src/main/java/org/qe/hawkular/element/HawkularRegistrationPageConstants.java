@@ -15,6 +15,7 @@ public class HawkularRegistrationPageConstants {
     public static final By confirmPasswordLocator = By.id("password-confirm");
     public static final By registerButtonLocator = By
             .xpath("//input[@value='Register']");
+    public static final By backToLoginLink = By.xpath("//a[contains(text(),'Back to Login')]");
     public static final String registrationTitle = "Register with hawkular";
     public static final By noFirstNameError = By.xpath("//*[text()='Please specify first name']");
     public static final By noLastNameError = By.xpath("//*[text()='Please specify last name']");

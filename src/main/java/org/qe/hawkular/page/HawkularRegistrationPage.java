@@ -7,11 +7,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.qe.hawkular.element.HawkularManagementConsolePageConstants;
 import org.qe.hawkular.element.HawkularRegistrationPageConstants;
+import org.qe.hawkular.util.HawkularUtils;
 import org.testng.Assert;
 
 public class HawkularRegistrationPage {
 
-    private final WebDriver driver;
+    public final WebDriver driver;
 
     public HawkularRegistrationPage(WebDriver driver) {
 
@@ -25,7 +26,6 @@ public class HawkularRegistrationPage {
     By passwordLocator = HawkularRegistrationPageConstants.passwordLocator;
     By confirmPasswordLocator = HawkularRegistrationPageConstants.confirmPasswordLocator;
     By registerButtonLocator = HawkularRegistrationPageConstants.registerButtonLocator;
-
 
     public HawkularRegistrationPage typeUsername(String username) {
         driver.findElement(usernameLocator).sendKeys(username);
@@ -82,24 +82,16 @@ public class HawkularRegistrationPage {
     }
 
     public boolean verifyRegCompleted() {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions
-                .presenceOfElementLocated(HawkularManagementConsolePageConstants.consoleImageAltLocator));
-        return driver.findElement(
-                HawkularManagementConsolePageConstants.consoleImageAltLocator)
-                .isDisplayed();
+        HawkularConsoleAddUrlPage addUrlPage = new HawkularConsoleAddUrlPage(driver);
+        return addUrlPage.verifyConsoleImagePresent();
     }
 
     public boolean verifyMismatchPasswords() {
 
-        // return
-        // driver.getPageSource().contains(HawkularRegistrationPageConstants.mistmatchPasswordErrorMsg);
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions
-                .presenceOfElementLocated(HawkularRegistrationPageConstants.mismatchPasswordError));
-        return driver.findElement(
-                HawkularRegistrationPageConstants.mismatchPasswordError)
-                .isDisplayed();
+        HawkularUtils util = new HawkularUtils(driver);
+        return util
+                .waitForElementPresent(HawkularRegistrationPageConstants.mismatchPasswordError);
+
     }
 
     public boolean verifyNoPasswords() {

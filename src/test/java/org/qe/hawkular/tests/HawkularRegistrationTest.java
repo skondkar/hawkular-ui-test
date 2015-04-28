@@ -18,7 +18,7 @@ public class HawkularRegistrationTest extends HawkularSeleniumWebDriver {
     public void hawkularRegistrationBasicTest(String browser, String version,
             String os) throws Exception {
         WebDriver driver = createDriver(browser, version, os,
-                "hawkularRegistrationBasicTest" + os + browser + version);
+                "hawkularRegistrationBasicTest");
 
         driver.get(HawkularSeleniumWebDriver.hawkularUrl);
         System.out.println(driver.getTitle());
@@ -65,7 +65,7 @@ public class HawkularRegistrationTest extends HawkularSeleniumWebDriver {
     public void hawkularRegistrationNoPasswordsTest(String browser, String version,
             String os) throws Exception {
         WebDriver driver = createDriver(browser, version, os,
-                "hawkularRegistrationNoPasswordsTest" + os + browser + version);
+                "hawkularRegistrationNoPasswordsTest");
 
         driver.get(HawkularSeleniumWebDriver.hawkularUrl);
         System.out.println(driver.getTitle());
@@ -88,7 +88,7 @@ public class HawkularRegistrationTest extends HawkularSeleniumWebDriver {
     public void hawkularRegistrationNoEmailTest(String browser, String version,
             String os) throws Exception {
         WebDriver driver = createDriver(browser, version, os,
-                "hawkularRegistrationNoEmailTest" + os + browser + version);
+                "hawkularRegistrationNoEmailTest");
 
         driver.get(HawkularSeleniumWebDriver.hawkularUrl);
         System.out.println(driver.getTitle());
@@ -111,7 +111,7 @@ public class HawkularRegistrationTest extends HawkularSeleniumWebDriver {
     public void hawkularRegistrationNoFirstNameTest(String browser, String version,
             String os) throws Exception {
         WebDriver driver = createDriver(browser, version, os,
-                "hawkularRegistrationNoFirstNameTest" + os + browser + version);
+                "hawkularRegistrationNoFirstNameTest");
 
         driver.get(HawkularSeleniumWebDriver.hawkularUrl);
         System.out.println(driver.getTitle());
@@ -134,7 +134,7 @@ public class HawkularRegistrationTest extends HawkularSeleniumWebDriver {
     public void hawkularRegistrationNoLastNameTest(String browser, String version,
             String os) throws Exception {
         WebDriver driver = createDriver(browser, version, os,
-                "hawkularRegistrationNoLastNameTest" + os + browser + version);
+                "hawkularRegistrationNoLastNameTest");
 
         driver.get(HawkularSeleniumWebDriver.hawkularUrl);
         System.out.println(driver.getTitle());
@@ -157,7 +157,7 @@ public class HawkularRegistrationTest extends HawkularSeleniumWebDriver {
     public void hawkularRegistrationNoUserNameTest(String browser, String version,
             String os) throws Exception {
         WebDriver driver = createDriver(browser, version, os,
-                "hawkularRegistrationNoUserNameTest" + os + browser + version);
+                "hawkularRegistrationNoUserNameTest");
 
         driver.get(HawkularSeleniumWebDriver.hawkularUrl);
         System.out.println(driver.getTitle());
@@ -180,7 +180,7 @@ public class HawkularRegistrationTest extends HawkularSeleniumWebDriver {
     public void hawkularRegistrationPasswordMinLengthTest(String browser, String version,
             String os) throws Exception {
         WebDriver driver = createDriver(browser, version, os,
-                "hawkularRegistrationPasswordMinLengthTest" + os + browser + version);
+                "hawkularRegistrationPasswordMinLengthTest");
 
         driver.get(HawkularSeleniumWebDriver.hawkularUrl);
         System.out.println(driver.getTitle());

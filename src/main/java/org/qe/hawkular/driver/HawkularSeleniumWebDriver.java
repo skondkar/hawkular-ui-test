@@ -25,10 +25,14 @@ public class HawkularSeleniumWebDriver implements
     public static String hawkularUrl = (System.getProperty("hawkularUrl") != null) ? System
             .getProperty("hawkularUrl") : "http://localhost:8080";
 
+            public static String sauceUsername = (System.getProperty("sauceUsername") != null) ? System
+                    .getProperty("sauceUsername") : "hawkularqe";
+
+                    
     public String authenticationKey = System.getProperty("authenticationKey");
 
     public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication(
-            "hawkularqe", authenticationKey);
+            sauceUsername , authenticationKey);
 
     private ThreadLocal<WebDriver> webDriver = new ThreadLocal<WebDriver>();
 
@@ -37,13 +41,14 @@ public class HawkularSeleniumWebDriver implements
     public WebDriver createDriver(String browser, String version, String os,
             String testName) throws MalformedURLException {
 
-        DesiredCapabilities capabilities = new DesiredCapabilities();
+//        DesiredCapabilities capabilities = new DesiredCapabilities();
+        DesiredCapabilities capabilities = DesiredCapabilities.firefox();
         capabilities.setCapability(CapabilityType.BROWSER_NAME, browser);
         if (version != null) {
             capabilities.setCapability(CapabilityType.VERSION, version);
         }
         capabilities.setCapability(CapabilityType.PLATFORM, os);
-        capabilities.setCapability("name", testName);
+        capabilities.setCapability("name", testName+browser+version+os);
         webDriver.set(new RemoteWebDriver(new URL("http://"
                 + authentication.getUsername() + ":"
                 + authentication.getAccessKey()

@@ -9,8 +9,11 @@ public class HawkularLoginPageConstants {
     public static final By loginButtonLocator = By.id("kc-login");
     public static final By cancelButtonLocator = By.id("kc-cancel");
     public static final String loginTitle = "Log in to hawkular";
-    public static final String login = "ahovsepy";
-    public static final String password = "password";
+    public static final String login = "hawkularqe";
+    public static final String password = "H@wkular123";
     public static final By registrationLink = By.linkText("Register");
-
+    public static final By logoutDropdown = By.xpath("//a[contains(attribute::class,'dropdown-toggle')]");
+    public static final By logoutLink = By.xpath("//a[contains(attribute::onclick,'logout')]");
+    
+    public static final By invalidUsernamePasswordError = By.xpath("//*[text()='Invalid username or password.']");
 }
