@@ -10,6 +10,8 @@ public class HawkularConsoleAddUrlPage {
     public final WebDriver driver;
 
     By consoleImageAltLocator = HawkularManagementConsolePageConstants.consoleImageAltLocator;
+    By urlLocator = HawkularManagementConsolePageConstants.urlLocator;
+    By addButtonLocator = HawkularManagementConsolePageConstants.addButtonLocator;
 
     public HawkularConsoleAddUrlPage(WebDriver driver) {
 
@@ -20,4 +22,16 @@ public class HawkularConsoleAddUrlPage {
         HawkularUtils util = new HawkularUtils(driver);
         return util.waitForElementPresent(consoleImageAltLocator);
     }
+    
+    public HawkularConsoleAddUrlPage typeURL(String URL) {
+        driver.findElement(urlLocator).sendKeys(URL);
+
+        return this;
+    }
+
+    public HawkularConsoleAddUrlPage submitURL() {
+        driver.findElement(addButtonLocator).submit();
+        return new HawkularConsoleAddUrlPage(driver);
+    }    
+
 }
