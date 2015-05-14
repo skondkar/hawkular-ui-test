@@ -20,9 +20,9 @@ import com.saucelabs.testng.SauceOnDemandTestListener;
 public class HawkularHomePageTest extends HawkularSeleniumWebDriver {
     private final String testURL = "www.redhat.com";
     @BeforeSuite
-    public void addURL() throws MalformedURLException {
+    public void homePage() throws MalformedURLException {
         WebDriver driver = createDriver("firefox", "24.0", "Linux",
-                "addURL");
+                "homePage");
 
         driver.get(HawkularSeleniumWebDriver.hawkularUrl);
         System.out.println(driver.getTitle());
@@ -69,7 +69,7 @@ public class HawkularHomePageTest extends HawkularSeleniumWebDriver {
 
         util = new HawkularUtils(driver);
         Assert.assertTrue(util
-                .waitForElementPresent(HawkularManagementConsolePageConstants.consoleImageAltLocator));
+                .waitForElementPresent(HawkularManagementConsolePageConstants.homePageImgLocator));
 
         System.out.print(">>>>>> This is a Add URL test");
             driver.get(HawkularSeleniumWebDriver.hawkularUrl);
@@ -79,6 +79,44 @@ public class HawkularHomePageTest extends HawkularSeleniumWebDriver {
             AddUrlPage.typeURL(testURL);
             AddUrlPage.submitURL();
         driver.quit();
+    }
+
+    @Test(dataProvider = "browsersAndOs", dataProviderClass = HawkularDataProvider.class)
+    public void hawkularMenuNavigationTest(String browser, String version, String os)
+            throws Exception {
+        WebDriver driver = createDriver(browser, version, os,
+                "MenuNavigationTest");
+
+        driver.get(HawkularSeleniumWebDriver.hawkularUrl);
+        System.out.println(driver.getTitle());
+
+        HawkularLoginPage loginPage = new HawkularLoginPage(driver);
+
+        HawkularUtils util = new HawkularUtils(driver);
+        util.assertTitle(HawkularLoginPageConstants.loginTitle);
+
+        loginPage = new HawkularLoginPage(driver);
+        loginPage.loginAs(HawkularRegistrationPageConstants.username,
+                HawkularRegistrationPageConstants.password);
+
+        util = new HawkularUtils(driver);
+        Assert.assertTrue(util
+                .waitForElementPresent(HawkularManagementConsolePageConstants.homePageImgLocator));
+       
+        System.out.print(">>>>>> This is Menu Vavigation Test");
+            driver.get(HawkularSeleniumWebDriver.hawkularUrl);
+
+            HawkularConsoleAddUrlPage AddUrlPage = new HawkularConsoleAddUrlPage(driver);
+            AddUrlPage.urlsMenuExists();
+            AddUrlPage.appServersMenuExists();
+            AddUrlPage.navigateAppServersMenu();
+            Assert.assertTrue(util
+                .waitForElementPresent(HawkularManagementConsolePageConstants.appServersListLocator));
+            AddUrlPage.navigateURLsMenu();
+            Assert.assertTrue(util
+                .waitForElementPresent(HawkularManagementConsolePageConstants.urlLocator));
+        driver.quit();
+
     }
 }
 	
