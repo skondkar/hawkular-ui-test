@@ -63,21 +63,13 @@ public class HawkularHomePageTest extends HawkularSeleniumWebDriver {
         HawkularUtils util = new HawkularUtils(driver);
         util.assertTitle(HawkularLoginPageConstants.loginTitle);
 
-        loginPage = new HawkularLoginPage(driver);
         loginPage.loginAs(HawkularRegistrationPageConstants.username,
                 HawkularRegistrationPageConstants.password);
-
-        util = new HawkularUtils(driver);
-        Assert.assertTrue(util
-                .waitForElementPresent(HawkularManagementConsolePageConstants.homePageImgLocator));
-
-        System.out.print(">>>>>> This is a Add URL test");
-            driver.get(HawkularSeleniumWebDriver.hawkularUrl);
      
-            HawkularConsoleAddUrlPage AddUrlPage = new HawkularConsoleAddUrlPage(driver);
-           
-            AddUrlPage.typeURL(testURL);
-            AddUrlPage.submitURL();
+        HawkularConsoleAddUrlPage addUrlPage = new HawkularConsoleAddUrlPage(driver);
+        addUrlPage.verifyConsoleImagePresent();
+        addUrlPage.typeURL(testURL);
+        addUrlPage.submitURL();
         driver.quit();
     }
 
@@ -94,27 +86,19 @@ public class HawkularHomePageTest extends HawkularSeleniumWebDriver {
 
         HawkularUtils util = new HawkularUtils(driver);
         util.assertTitle(HawkularLoginPageConstants.loginTitle);
+        
 
-        loginPage = new HawkularLoginPage(driver);
         loginPage.loginAs(HawkularRegistrationPageConstants.username,
                 HawkularRegistrationPageConstants.password);
 
-        util = new HawkularUtils(driver);
-        Assert.assertTrue(util
-                .waitForElementPresent(HawkularManagementConsolePageConstants.homePageImgLocator));
-       
-        System.out.print(">>>>>> This is Menu Vavigation Test");
-            driver.get(HawkularSeleniumWebDriver.hawkularUrl);
-
-            HawkularConsoleAddUrlPage AddUrlPage = new HawkularConsoleAddUrlPage(driver);
-            AddUrlPage.urlsMenuExists();
-            AddUrlPage.appServersMenuExists();
-            AddUrlPage.navigateAppServersMenu();
-            Assert.assertTrue(util
-                .waitForElementPresent(HawkularManagementConsolePageConstants.appServersListLocator));
-            AddUrlPage.navigateURLsMenu();
-            Assert.assertTrue(util
-                .waitForElementPresent(HawkularManagementConsolePageConstants.urlLocator));
+        HawkularConsoleAddUrlPage addUrlPage = new HawkularConsoleAddUrlPage(driver);
+        addUrlPage.verifyConsoleImagePresent();
+        addUrlPage.urlsMenuExists();
+        addUrlPage.appServersMenuExists();
+        addUrlPage.navigateToAppServersMenu();
+        addUrlPage.verifyAppServersMenuNavigation();
+        addUrlPage.navigateToURLsMenu();
+        addUrlPage.verifyURLsMenuNavigation();
         driver.quit();
 
     }
