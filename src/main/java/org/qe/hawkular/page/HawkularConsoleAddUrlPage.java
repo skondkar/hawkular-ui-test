@@ -14,7 +14,7 @@ public class HawkularConsoleAddUrlPage {
     By addButtonLocator = HawkularManagementConsolePageConstants.addButtonLocator;
     By urlsMenuLocator = HawkularManagementConsolePageConstants.urlsMenuLocator;
     By appServersMenuLocator = HawkularManagementConsolePageConstants.appServersMenuLocator;
-
+    By appServersListLocator = HawkularManagementConsolePageConstants.appServersListLocator;
 
     public HawkularConsoleAddUrlPage(WebDriver driver) {
 
@@ -47,13 +47,25 @@ public class HawkularConsoleAddUrlPage {
         return util.waitForElementPresent(appServersMenuLocator);
     }
 
-    public HawkularConsoleAddUrlPage navigateURLsMenu(){
-        driver.findElement(urlsMenuLocator).click();
-        return new HawkularConsoleAddUrlPage(driver);
+
+    public void navigateToAppServersMenu(){
+        HawkularUtils utils = new HawkularUtils(driver);
+         utils.navigateTo(appServersMenuLocator);
     }
 
-    public HawkularConsoleAddUrlPage navigateAppServersMenu(){
-        driver.findElement(appServersMenuLocator).click();
-        return new HawkularConsoleAddUrlPage(driver);
+    public void navigateToURLsMenu(){
+        HawkularUtils utils = new HawkularUtils(driver);
+         utils.navigateTo(urlsMenuLocator);
     }
+     
+    public boolean verifyAppServersMenuNavigation() {
+        HawkularUtils util = new HawkularUtils(driver);
+        return util.waitForElementPresent(appServersListLocator);
+    }
+
+    public boolean verifyURLsMenuNavigation() {
+        HawkularUtils util = new HawkularUtils(driver);
+        return util.waitForElementPresent(urlLocator);
+    }
+
 }
