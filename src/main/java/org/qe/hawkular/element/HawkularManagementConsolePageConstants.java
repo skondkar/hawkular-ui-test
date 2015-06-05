@@ -11,6 +11,8 @@ public class HawkularManagementConsolePageConstants {
    public static final By homePageImgLocator = By.id("hawkularLogo");
    public static final By urlsMenuLocator = By.linkText("URLs");
    public static final By appServersMenuLocator = By.linkText("Application Servers");
-   public static final By appServersListLocator = By.linkText("Tomy Machine");
-
+   public static final By appServersListLocator = By.xpath("//*[text()='Application Servers']");
+   public static final By urlHeadingLocator = By.linkText("http://www.redhat.com");
+   public static final By addUrlMsg = By.xpath("//*[text()='Your data is being collected. Please be patient (should be about another minute).']");
+   public static final String testURL = "www.redhat.com";
 }
