@@ -18,7 +18,6 @@ import com.saucelabs.testng.SauceOnDemandTestListener;
 
 @Listeners({ SauceOnDemandTestListener.class })
 public class HawkularHomePageTest extends HawkularSeleniumWebDriver {
-    private final String testURL = "www.redhat.com";
     @BeforeSuite
     public void homePage() throws MalformedURLException {
         WebDriver driver = createDriver("firefox", "24.0", "Linux",
@@ -68,8 +67,10 @@ public class HawkularHomePageTest extends HawkularSeleniumWebDriver {
      
         HawkularConsoleAddUrlPage addUrlPage = new HawkularConsoleAddUrlPage(driver);
         addUrlPage.verifyConsoleImagePresent();
-        addUrlPage.typeURL(testURL);
+        addUrlPage.typeURL(HawkularManagementConsolePageConstants.testURL);
         addUrlPage.submitURL();
+        addUrlPage.verifyAddUrlMsg();
+        addUrlPage.verifyUrlExists();
         driver.quit();
     }
 
