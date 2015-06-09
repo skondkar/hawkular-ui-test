@@ -17,6 +17,7 @@ public class HawkularConsoleAddUrlPage {
     By appServersListLocator = HawkularManagementConsolePageConstants.appServersListLocator;
     By urlHeadingLocator = HawkularManagementConsolePageConstants.urlHeadingLocator;
     By addUrlMsg = HawkularManagementConsolePageConstants.addUrlMsg;
+    By deleteButtonLocator = HawkularManagementConsolePageConstants.deleteButtonLocator;
 
     public HawkularConsoleAddUrlPage(WebDriver driver) {
 
@@ -34,6 +35,12 @@ public class HawkularConsoleAddUrlPage {
         return this;
     }
 
+    public HawkularConsoleAddUrlPage deleteURL() {
+        driver.findElement(deleteButtonLocator).click();
+        return new HawkularConsoleAddUrlPage(driver);
+    } 
+    
+ 
     public HawkularConsoleAddUrlPage submitURL() {
         driver.findElement(addButtonLocator).submit();
         return new HawkularConsoleAddUrlPage(driver);
@@ -47,6 +54,10 @@ public class HawkularConsoleAddUrlPage {
     public boolean verifyUrlExists() {
         HawkularUtils util = new HawkularUtils(driver);
         return util.waitForElementPresent(urlHeadingLocator);
+    }
+    
+    public boolean verifyUrlDoesnotExist() {
+        return !driver.findElement(urlHeadingLocator).isDisplayed();
     }
     
     public boolean urlsMenuExists() {
