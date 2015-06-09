@@ -2,7 +2,7 @@
 <suite name="HawkularUITest">
     <test name="HawkualrLoginTest">
         <classes>
-            <class name="org.qe.hawkular.tests.HawkualrLoginTest" />
+            <class name="org.qe.hawkular.tests.HawkularHomePageTest" />
           <!--   
           <class name="org.qe.hawkular.tests.HawkularRegistrationTest">
             <methods>

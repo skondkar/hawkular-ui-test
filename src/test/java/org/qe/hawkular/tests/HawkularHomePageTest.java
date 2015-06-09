@@ -1,5 +1,6 @@
 package org.qe.hawkular.tests;
 import java.net.MalformedURLException;
+
 import org.openqa.selenium.WebDriver;
 import org.qe.hawkular.driver.HawkularSeleniumWebDriver;
 import org.qe.hawkular.element.HawkularLoginPageConstants;
@@ -14,6 +15,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+
 import com.saucelabs.testng.SauceOnDemandTestListener;
 
 @Listeners({ SauceOnDemandTestListener.class })
@@ -49,10 +51,10 @@ public class HawkularHomePageTest extends HawkularSeleniumWebDriver {
     }
 
     @Test(dataProvider = "browsersAndOs", dataProviderClass = HawkularDataProvider.class)
-    public void hawkularAddURLTest(String browser, String version, String os)
+    public void hawkularAddDeleteURLTest(String browser, String version, String os)
             throws Exception {
         WebDriver driver = createDriver(browser, version, os,
-                "hawkularAddURLTest");
+                "hawkularAddDeleteURLTest");
 
         driver.get(HawkularSeleniumWebDriver.hawkularUrl);
         System.out.println(driver.getTitle());
@@ -69,11 +71,14 @@ public class HawkularHomePageTest extends HawkularSeleniumWebDriver {
         addUrlPage.verifyConsoleImagePresent();
         addUrlPage.typeURL(HawkularManagementConsolePageConstants.testURL);
         addUrlPage.submitURL();
-        addUrlPage.verifyAddUrlMsg();
+       // addUrlPage.verifyAddUrlMsg();
         addUrlPage.verifyUrlExists();
+        addUrlPage.deleteURL();
+        addUrlPage.verifyUrlDoesnotExist();
         driver.quit();
     }
 
+    
     @Test(dataProvider = "browsersAndOs", dataProviderClass = HawkularDataProvider.class)
     public void hawkularMenuNavigationTest(String browser, String version, String os)
             throws Exception {
