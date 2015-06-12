@@ -1,5 +1,9 @@
 package org.qe.hawkular.page;
 
+import java.util.NoSuchElementException;
+
+import junit.framework.Assert;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.qe.hawkular.element.HawkularManagementConsolePageConstants;
@@ -18,6 +22,7 @@ public class HawkularConsoleAddUrlPage {
     By urlHeadingLocator = HawkularManagementConsolePageConstants.urlHeadingLocator;
     By addUrlMsg = HawkularManagementConsolePageConstants.addUrlMsg;
     By deleteButtonLocator = HawkularManagementConsolePageConstants.deleteButtonLocator;
+    By confirmDelete = HawkularManagementConsolePageConstants.confirmDelete;
 
     public HawkularConsoleAddUrlPage(WebDriver driver) {
 
@@ -28,7 +33,7 @@ public class HawkularConsoleAddUrlPage {
         HawkularUtils util = new HawkularUtils(driver);
         return util.waitForElementPresent(consoleImageAltLocator);
     }
-    
+
     public HawkularConsoleAddUrlPage typeURL(String URL) {
         driver.findElement(urlLocator).sendKeys(URL);
 
@@ -36,30 +41,43 @@ public class HawkularConsoleAddUrlPage {
     }
 
     public HawkularConsoleAddUrlPage deleteURL() {
-        driver.findElement(deleteButtonLocator).click();
+        try {
+            driver.findElement(deleteButtonLocator).click();
+            HawkularUtils util = new HawkularUtils(driver);
+            util.waitForElementPresent(confirmDelete);
+            driver.findElement(confirmDelete).click();
+        } catch (NoSuchElementException e) {
+        }
+
         return new HawkularConsoleAddUrlPage(driver);
-    } 
-    
- 
+    }
+
     public HawkularConsoleAddUrlPage submitURL() {
         driver.findElement(addButtonLocator).submit();
         return new HawkularConsoleAddUrlPage(driver);
-    }    
- 
+    }
+
     public boolean verifyAddUrlMsg() {
         HawkularUtils util = new HawkularUtils(driver);
         return util.waitForElementPresent(addUrlMsg);
     }
 
-    public boolean verifyUrlExists() {
+    public void verifyUrlExists() {
         HawkularUtils util = new HawkularUtils(driver);
-        return util.waitForElementPresent(urlHeadingLocator);
+        Assert.assertTrue(util.waitForElementPresent(urlHeadingLocator));
     }
-    
-    public boolean verifyUrlDoesnotExist() {
-        return !driver.findElement(urlHeadingLocator).isDisplayed();
+
+    public void verifyUrlDoesnotExist() {
+        boolean bool = true;
+        try {
+            driver.wait(5000);
+            bool = driver.findElement(urlHeadingLocator).isDisplayed();
+        } catch (Exception e) {
+            bool = false;
+        }
+        Assert.assertFalse(bool);
     }
-    
+
     public boolean urlsMenuExists() {
         HawkularUtils util = new HawkularUtils(driver);
         return util.waitForElementPresent(urlsMenuLocator);
@@ -70,17 +88,16 @@ public class HawkularConsoleAddUrlPage {
         return util.waitForElementPresent(appServersMenuLocator);
     }
 
-
-    public void navigateToAppServersMenu(){
+    public void navigateToAppServersMenu() {
         HawkularUtils utils = new HawkularUtils(driver);
-         utils.navigateTo(appServersMenuLocator);
+        utils.navigateTo(appServersMenuLocator);
     }
 
-    public void navigateToURLsMenu(){
+    public void navigateToURLsMenu() {
         HawkularUtils utils = new HawkularUtils(driver);
-         utils.navigateTo(urlsMenuLocator);
+        utils.navigateTo(urlsMenuLocator);
     }
-     
+
     public boolean verifyAppServersMenuNavigation() {
         HawkularUtils util = new HawkularUtils(driver);
         return util.waitForElementPresent(appServersListLocator);

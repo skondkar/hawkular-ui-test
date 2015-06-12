@@ -51,10 +51,10 @@ public class HawkularHomePageTest extends HawkularSeleniumWebDriver {
     }
 
     @Test(dataProvider = "browsersAndOs", dataProviderClass = HawkularDataProvider.class)
-    public void hawkularAddDeleteURLTest(String browser, String version, String os)
+    public void hawkularAddURLTest(String browser, String version, String os)
             throws Exception {
         WebDriver driver = createDriver(browser, version, os,
-                "hawkularAddDeleteURLTest");
+                "hawkularAddURLTest");
 
         driver.get(HawkularSeleniumWebDriver.hawkularUrl);
         System.out.println(driver.getTitle());
@@ -71,13 +71,36 @@ public class HawkularHomePageTest extends HawkularSeleniumWebDriver {
         addUrlPage.verifyConsoleImagePresent();
         addUrlPage.typeURL(HawkularManagementConsolePageConstants.testURL);
         addUrlPage.submitURL();
-       // addUrlPage.verifyAddUrlMsg();
         addUrlPage.verifyUrlExists();
+        driver.quit();
+    }
+
+    
+    @Test(dataProvider = "browsersAndOs", dataProviderClass = HawkularDataProvider.class)
+    public void hawkularDeleteURLTest(String browser, String version, String os)
+            throws Exception {
+        WebDriver driver = createDriver(browser, version, os,
+                "hawkularDeleteURLTest");
+
+        driver.get(HawkularSeleniumWebDriver.hawkularUrl);
+        System.out.println(driver.getTitle());
+
+        HawkularLoginPage loginPage = new HawkularLoginPage(driver);
+
+        HawkularUtils util = new HawkularUtils(driver);
+        util.assertTitle(HawkularLoginPageConstants.loginTitle);
+
+        loginPage.loginAs(HawkularRegistrationPageConstants.username,
+                HawkularRegistrationPageConstants.password);
+     
+        HawkularConsoleAddUrlPage addUrlPage = new HawkularConsoleAddUrlPage(driver);
+        addUrlPage.verifyConsoleImagePresent();
         addUrlPage.deleteURL();
         addUrlPage.verifyUrlDoesnotExist();
         driver.quit();
     }
 
+    
     
     @Test(dataProvider = "browsersAndOs", dataProviderClass = HawkularDataProvider.class)
     public void hawkularMenuNavigationTest(String browser, String version, String os)
