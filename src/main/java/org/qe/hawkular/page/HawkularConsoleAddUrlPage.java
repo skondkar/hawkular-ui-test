@@ -46,7 +46,7 @@ public class HawkularConsoleAddUrlPage {
             HawkularUtils util = new HawkularUtils(driver);
             util.waitForElementPresent(confirmDelete);
             driver.findElement(confirmDelete).click();
-        } catch (NoSuchElementException e) {
+        } catch (Exception e) {
         }
 
         return new HawkularConsoleAddUrlPage(driver);

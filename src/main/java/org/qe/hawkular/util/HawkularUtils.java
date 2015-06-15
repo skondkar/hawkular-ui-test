@@ -1,10 +1,15 @@
 package org.qe.hawkular.util;
 
+import java.net.MalformedURLException;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.qe.hawkular.driver.HawkularSeleniumWebDriver;
 import org.qe.hawkular.element.HawkularRegistrationPageConstants;
+import org.qe.hawkular.page.HawkularLoginPage;
+import org.qe.hawkular.page.HawkularRegistrationPage;
 
 public class HawkularUtils {
 
@@ -31,4 +36,7 @@ public class HawkularUtils {
         wait.until(ExpectedConditions.presenceOfElementLocated(element));
         return driver.findElement(element).isDisplayed();
     }
+
+  
+
 }
