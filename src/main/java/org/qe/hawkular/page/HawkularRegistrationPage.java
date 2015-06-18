@@ -1,5 +1,7 @@
 package org.qe.hawkular.page;
 
+import java.net.MalformedURLException;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -174,5 +176,29 @@ public class HawkularRegistrationPage {
         return driver.findElement(
                 HawkularRegistrationPageConstants.passwordNumericCharError)
                 .isDisplayed();
+    }
+    
+    public void registerUserIfDoesNotExist() {
+        HawkularLoginPage loginPage = new HawkularLoginPage(driver);
+        try {
+            // try registering hawkularqe, in case it's no yet registered
+            loginPage.navigateToRegistration();
+
+            HawkularRegistrationPage regPage = new HawkularRegistrationPage(
+                    driver);
+            regPage.register(HawkularRegistrationPageConstants.username,
+                    HawkularRegistrationPageConstants.password,
+                    HawkularRegistrationPageConstants.password,
+                    HawkularRegistrationPageConstants.email,
+                    HawkularRegistrationPageConstants.firstName,
+                    HawkularRegistrationPageConstants.lastName);
+            regPage.verifyRegCompleted();
+
+        } catch (Exception ex) {
+
+        } finally {
+            driver.quit();
+        }
+
     }
 }
