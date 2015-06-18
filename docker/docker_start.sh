@@ -21,7 +21,7 @@ if [ -z ${AUTH_KEY} ]; then
    exit 1
 fi
 
-printf "1=firefox:24.0:Linux" > ${WORKING_DIR}/src/test/resources/browserAndOs.properties
+#printf "1=firefox:24.0:Linux" > ${WORKING_DIR}/src/test/resources/browserAndOs.properties
 OPTS="-DhawkularUrl=${HAWKULAR_ENDPOINT:-http://localhost:8080} -DauthenticationKey=${AUTH_KEY}"
 hawkular_wait.sh && mvn -f ${WORKING_DIR}  -o test ${OPTS}
 
