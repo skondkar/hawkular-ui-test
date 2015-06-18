@@ -1,9 +1,6 @@
 package org.qe.hawkular.page;
 
-import java.util.NoSuchElementException;
-
 import junit.framework.Assert;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.qe.hawkular.element.HawkularManagementConsolePageConstants;
@@ -46,7 +43,7 @@ public class HawkularConsoleAddUrlPage {
             HawkularUtils util = new HawkularUtils(driver);
             util.waitForElementPresent(confirmDelete);
             driver.findElement(confirmDelete).click();
-        } catch (NoSuchElementException e) {
+        } catch (Exception e) {
         }
 
         return new HawkularConsoleAddUrlPage(driver);
@@ -96,6 +93,11 @@ public class HawkularConsoleAddUrlPage {
     public void navigateToURLsMenu() {
         HawkularUtils utils = new HawkularUtils(driver);
         utils.navigateTo(urlsMenuLocator);
+    }
+    
+    public void navigateToURL() {
+        HawkularUtils utils = new HawkularUtils(driver);
+        utils.navigateTo(urlHeadingLocator);
     }
 
     public boolean verifyAppServersMenuNavigation() {

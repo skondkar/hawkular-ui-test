@@ -1,14 +1,10 @@
 package org.qe.hawkular.page;
 
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.qe.hawkular.element.HawkularManagementConsolePageConstants;
 import org.qe.hawkular.element.HawkularRegistrationPageConstants;
 import org.qe.hawkular.util.HawkularUtils;
-import org.testng.Assert;
 
 public class HawkularRegistrationPage {
 
@@ -64,7 +60,7 @@ public class HawkularRegistrationPage {
     }
 
     public HawkularRegistrationPage submitRegistrationForm() {
-        driver.findElement(registerButtonLocator).click();
+        driver.findElement(registerButtonLocator).submit();
 
         return this;
     }
@@ -174,5 +170,30 @@ public class HawkularRegistrationPage {
         return driver.findElement(
                 HawkularRegistrationPageConstants.passwordNumericCharError)
                 .isDisplayed();
+    }
+    
+    public void registerUserIfDoesNotExist() {
+        HawkularLoginPage loginPage = new HawkularLoginPage(driver);
+        // try registering hawkularqe, in case it's no yet registered
+        loginPage.navigateToRegistration();
+
+        HawkularRegistrationPage regPage = new HawkularRegistrationPage(
+                driver);
+        regPage.register(HawkularRegistrationPageConstants.username,
+                HawkularRegistrationPageConstants.password,
+                HawkularRegistrationPageConstants.password,
+                HawkularRegistrationPageConstants.email,
+                HawkularRegistrationPageConstants.firstName,
+                HawkularRegistrationPageConstants.lastName);
+        try {
+          
+            regPage.verifyRegCompleted();
+
+        } catch (Exception ex) {
+
+        } finally {
+            driver.quit();
+        }
+
     }
 }
