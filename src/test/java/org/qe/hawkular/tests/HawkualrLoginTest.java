@@ -100,4 +100,23 @@ public class HawkualrLoginTest extends HawkularSeleniumWebDriver {
         driver.quit();
     }
 
+    @Test(dataProvider = "browsersAndOs", dataProviderClass = HawkularDataProvider.class)
+     public void hawkularLogoutTest(String browser, String version, String os)
+            throws Exception {
+        WebDriver driver = createDriver(browser, version, os, "hawkularLogoutTest");
+
+        driver.get(HawkularSeleniumWebDriver.hawkularUrl);
+        System.out.println(driver.getTitle());
+
+        HawkularLoginPage loginPage = new HawkularLoginPage(driver);
+
+        HawkularUtils util = new HawkularUtils(driver);
+        util.assertTitle(HawkularLoginPageConstants.loginTitle);
+
+        loginPage.loginAs(HawkularRegistrationPageConstants.username,
+                HawkularRegistrationPageConstants.password);
+        loginPage.logout();
+        driver.quit();
+    }
+
 }

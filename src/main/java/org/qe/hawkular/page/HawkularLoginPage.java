@@ -63,6 +63,8 @@ public class HawkularLoginPage {
     public HawkularLoginPage logout(){
         driver.findElement(HawkularLoginPageConstants.logoutDropdown).click();
         driver.findElement(HawkularLoginPageConstants.logoutLink).click();
+	HawkularUtils util = new HawkularUtils(driver);
+	util.waitForElementPresent(loginButtonLocator);
         return new HawkularLoginPage(driver);
     }
     
