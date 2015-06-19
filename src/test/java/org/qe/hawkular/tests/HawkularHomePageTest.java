@@ -12,7 +12,6 @@ import org.qe.hawkular.page.HawkularConsoleAddUrlPage;
 import org.qe.hawkular.page.HawkularRegistrationPage;
 import org.qe.hawkular.util.HawkularDataProvider;
 import org.qe.hawkular.util.HawkularUtils;
-import org.testng.Assert;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -26,6 +25,8 @@ public class HawkularHomePageTest extends HawkularSeleniumWebDriver {
         WebDriver driver = createDriver("firefox", "24.0", "Linux", "homePage");
         HawkularRegistrationPage registration = new HawkularRegistrationPage(
                 driver);
+        driver.get(HawkularSeleniumWebDriver.hawkularUrl);
+        System.out.println(driver.getTitle());
         registration.registerUserIfDoesNotExist();
 
     }
@@ -56,7 +57,7 @@ public class HawkularHomePageTest extends HawkularSeleniumWebDriver {
         driver.quit();
     }
 
-    @Test(dataProvider = "browsersAndOs", dataProviderClass = HawkularDataProvider.class)
+    @Test(dataProvider = "browsersAndOs", dataProviderClass = HawkularDataProvider.class, dependsOnMethods="hawkularAddURLTest")
     public void hawkularDeleteURLTest(String browser, String version, String os)
             throws Exception {
         WebDriver driver = createDriver(browser, version, os,

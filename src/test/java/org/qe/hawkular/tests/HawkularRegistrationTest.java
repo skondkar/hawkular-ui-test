@@ -6,10 +6,7 @@ import org.qe.hawkular.element.HawkularRegistrationPageConstants;
 import org.qe.hawkular.page.HawkularLoginPage;
 import org.qe.hawkular.page.HawkularRegistrationPage;
 import org.qe.hawkular.util.HawkularDataProvider;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-
-import com.saucelabs.testng.SauceOnDemandTestListener;
 
 //@Listeners({ SauceOnDemandTestListener.class })
 public class HawkularRegistrationTest extends HawkularSeleniumWebDriver {
@@ -19,22 +16,11 @@ public class HawkularRegistrationTest extends HawkularSeleniumWebDriver {
             String os) throws Exception {
         WebDriver driver = createDriver(browser, version, os,
                 "hawkularRegistrationBasicTest");
-
+        HawkularRegistrationPage registration = new HawkularRegistrationPage(
+                driver);
         driver.get(HawkularSeleniumWebDriver.hawkularUrl);
-        System.out.println(driver.getTitle());
+        registration.registerUserIfDoesNotExist();
 
-        HawkularLoginPage loginPage = new HawkularLoginPage(driver);
-        loginPage.navigateToRegistration();
-
-        HawkularRegistrationPage regPage = new HawkularRegistrationPage(driver);
-        regPage.register(HawkularRegistrationPageConstants.generateUsername(),
-                HawkularRegistrationPageConstants.password,
-                HawkularRegistrationPageConstants.password,
-                HawkularRegistrationPageConstants.generateEmail(),
-                HawkularRegistrationPageConstants.firstName,
-                HawkularRegistrationPageConstants.lastName);
-        regPage.verifyRegCompleted();
-        driver.quit();
     }
     
     @Test(dataProvider = "browsersAndOs", dataProviderClass = HawkularDataProvider.class)

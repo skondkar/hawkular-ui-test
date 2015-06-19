@@ -22,10 +22,12 @@ import com.saucelabs.testng.SauceOnDemandTestListener;
 public class HawkualrLoginTest extends HawkularSeleniumWebDriver {
 
     @BeforeSuite
-    public void prepateUser() throws MalformedURLException {
-        WebDriver driver = createDriver("firefox", "24.0", "Linux", "homePage");
+    public void prepareUser() throws MalformedURLException {
+        WebDriver driver = createDriver("safari", "6", "OSX 10.8", "homePage");
         HawkularRegistrationPage registration = new HawkularRegistrationPage(
                 driver);
+        driver.get(HawkularSeleniumWebDriver.hawkularUrl);
+        System.out.println(driver.getTitle());
         registration.registerUserIfDoesNotExist();
 
     }
