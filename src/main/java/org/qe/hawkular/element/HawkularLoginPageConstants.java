@@ -12,8 +12,8 @@ public class HawkularLoginPageConstants {
     public static final String login = "hawkularqe";
     public static final String password = "H@wkular123";
     public static final By registrationLink = By.linkText("Register");
-    public static final By logoutDropdown = By.xpath("//a[contains(attribute::class,'dropdown-toggle')]");
-    public static final By logoutLink = By.xpath("//a[contains(attribute::onclick,'logout')]");
+    public static final By logoutDropdown = By.xpath("/html/body/nav/div[2]/div[2]/ul/li/a");
+    public static final By logoutLink = By.id("logout");
     
     public static final By invalidUsernamePasswordError = By.xpath("//*[text()='Invalid username or password.']");
 }
