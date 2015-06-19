@@ -57,7 +57,7 @@ public class HawkularHomePageTest extends HawkularSeleniumWebDriver {
         driver.quit();
     }
 
-    @Test(dataProvider = "browsersAndOs", dataProviderClass = HawkularDataProvider.class)
+    @Test(dataProvider = "browsersAndOs", dataProviderClass = HawkularDataProvider.class, dependsOnMethods="hawkularAddURLTest")
     public void hawkularDeleteURLTest(String browser, String version, String os)
             throws Exception {
         WebDriver driver = createDriver(browser, version, os,
