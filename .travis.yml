@@ -1,12 +1,7 @@
 language: java
 jdk:
 - oraclejdk8
-script:
-- if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
-    mvn verify -DhawkularUrl="${HAWKULAR_ENDPOINT}" -DauthenticationKey="${SAUCELABS_AUTH_KEY}"
-  else
-    mvn compile
-  fi
+script: ./build.sh
 env:
   global:
     secure: H5fpxHcke2jl2A8ZGtsV1yyCTNmnRx/JNu61T/pouRkb+DWGuvwxFWUJCGO6ue7fQ53z3MzalaBh8iI5orNBiyxbBbwHdwpvIPRvX3TBp5AY1rwuAAJnTd+YnWiSsaYEy3xo81vZ2nWfyFy/eltgr5wATw2Bp41EM/5bbmxhEkc=
