@@ -1,7 +1,6 @@
 package org.qe.hawkular.element;
 
 import java.util.Date;
-import java.util.Random;
 
 import org.openqa.selenium.By;
 
@@ -17,15 +16,15 @@ public class HawkularRegistrationPageConstants {
             .xpath("//input[@value='Register']");
     public static final By backToLoginLink = By.xpath("//a[contains(text(),'Back to Login')]");
     public static final String registrationTitle = "Register with hawkular";
-    public static final By noFirstNameError = By.xpath("//*[text()='Please specify first name']");
-    public static final By noLastNameError = By.xpath("//*[text()='Please specify last name']");
-    public static final By noEmailError = By.xpath("//*[text()='Please specify email']");
-    public static final By invalidEmailError = By.xpath("//*[text()='Invalid email address']");
-    public static final By noUsernameError = By.xpath("//*[text()='Please specify username']");
+    public static final By noFirstNameError = By.xpath("//*[text()='Please specify first name.']");
+    public static final By noLastNameError = By.xpath("//*[text()='Please specify last name.']");
+    public static final By noEmailError = By.xpath("//*[text()='Please specify email.']");
+    public static final By invalidEmailError = By.xpath("//*[text()='Invalid email address.']");
+    public static final By noUsernameError = By.xpath("//*[text()='Please specify username.']");
     public static final By noPasswordError = By.xpath("//*[text()='Please specify password.']");
     public static final By mismatchPasswordError = By.xpath("//*[contains(text(),'Password confirmation doesn')]");
     public static final String mistmatchPasswordErrorMsg = "Password confirmation doesn't match";
-    public static final By passwordMinLengthError = By.xpath("//*[text()='Invalid password: minimum length 8']");
+    public static final By passwordMinLengthError = By.xpath("//*[text()='Invalid password: minimum length 8.']");
     public static final By passwordUpperCaseError = By.xpath("//*[text()='Invalid password: must contain at least 1 upper case characters']");
     public static final By passwordSpecialCharError = By.xpath("//*[text()='Invalid password: must contain at least 1 special characters']");
     public static final By passwordNumericCharError = By.xpath("//*[text()='Invalid password: must contain at least 1 numerical digits']");

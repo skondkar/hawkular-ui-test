@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/Hawkular-QE/hawkular-ui-test.svg)](https://travis-ci.org/Hawkular-QE/hawkular-ui-test)
 # hawkular-ui-test
 
 saucelabs + selenium webdriver test framework for hawkular gui testing
