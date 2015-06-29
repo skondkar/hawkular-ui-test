@@ -28,4 +28,3 @@ hawkular_wait.sh && mvn -f ${WORKING_DIR}  -o test ${OPTS}
 chmod +x -R /reports
 
 echo "## Test completed ##"
-while true; do sleep 5; done

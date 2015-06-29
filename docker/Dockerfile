@@ -26,7 +26,6 @@ RUN yum install -y git wget &&\
     cd ${WORKING_DIR} &&\
     mvn dependency:go-offline test -Dtest=NoopTest &&\
     ln -s ${WORKING_DIR}/target/surefire-reports /reports &&\
-    chmod +x -R ${WORKING_DIR}/target/surefire-reports &&\
     ln -s ${WORKING_DIR}/docker/hawkular_wait.sh /usr/bin/hawkular_wait.sh &&\
     ln -s ${WORKING_DIR}/docker/docker_start.sh /usr/bin/docker_start.sh    
 
