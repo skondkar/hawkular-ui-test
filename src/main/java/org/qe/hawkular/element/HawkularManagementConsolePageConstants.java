@@ -16,4 +16,5 @@ public class HawkularManagementConsolePageConstants {
    public static final By addUrlMsg = By.xpath("//*[text()='Your data is being collected. Please be patient (should be about another minute).']");
    public static final By deleteButtonLocator =  By.xpath("//*[text() = 'http://"+testURL+"']/../..//button");
    public static final By confirmDelete =  By.xpath("//button[text()='Delete']");
+   public static final By errorAlert =  By.xpath("//*[@class='toast-message']");
 }

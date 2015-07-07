@@ -1,6 +1,7 @@
 package org.qe.hawkular.util;
 
 
+import org.apache.regexp.recompile;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -31,6 +32,12 @@ public class HawkularUtils {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.presenceOfElementLocated(element));
         return driver.findElement(element).isDisplayed();
+    }
+    
+    public void waitForElementNotPresent(By element) {
+        WebDriverWait wait = new WebDriverWait(driver, 45);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(element));
+        
     }
 
   

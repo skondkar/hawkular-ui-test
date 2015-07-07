@@ -19,21 +19,22 @@ public class HawkularLoginPage {
     By registrationLink = HawkularLoginPageConstants.registrationLink;
     By backToLoginLink = HawkularRegistrationPageConstants.backToLoginLink;
     By invalidUsernamePasswordError = HawkularLoginPageConstants.invalidUsernamePasswordError;
-    
+    By errorAlert = HawkularManagementConsolePageConstants.errorAlert;
+
     public HawkularLoginPage typeUsername(String username) {
         driver.findElement(usernameLocator).sendKeys(username);
 
         return this;
     }
 
-    public void navigateToRegistration(){
+    public void navigateToRegistration() {
         HawkularUtils utils = new HawkularUtils(driver);
-         utils.navigateTo(registrationLink);
+        utils.navigateTo(registrationLink);
     }
-    
-    public void navigateToLogin(){
+
+    public void navigateToLogin() {
         HawkularUtils utils = new HawkularUtils(driver);
-         utils.navigateTo(backToLoginLink);
+        utils.navigateTo(backToLoginLink);
     }
 
     public HawkularLoginPage typePassword(String password) {
@@ -59,19 +60,19 @@ public class HawkularLoginPage {
         typePassword(password);
         return submitLogin();
     }
-    
-    public HawkularLoginPage logout(){
+
+    public HawkularLoginPage logout() {
+        HawkularUtils util = new HawkularUtils(driver);
+        util.waitForElementNotPresent(errorAlert);
         driver.findElement(HawkularLoginPageConstants.logoutDropdown).click();
         driver.findElement(HawkularLoginPageConstants.logoutLink).click();
-	HawkularUtils util = new HawkularUtils(driver);
-	util.waitForElementPresent(loginButtonLocator);
+        util.waitForElementPresent(loginButtonLocator);
         return new HawkularLoginPage(driver);
     }
-    
-    public boolean verifyInvalidUsernameOrPassword(){
+
+    public boolean verifyInvalidUsernameOrPassword() {
         HawkularUtils util = new HawkularUtils(driver);
         return util.waitForElementPresent(invalidUsernamePasswordError);
-        
-        
+
     }
 }
