@@ -7,7 +7,6 @@ import org.qe.hawkular.driver.HawkularSeleniumWebDriver;
 import org.qe.hawkular.element.HawkularLoginPageConstants;
 import org.qe.hawkular.element.HawkularManagementConsolePageConstants;
 import org.qe.hawkular.element.HawkularRegistrationPageConstants;
-import org.qe.hawkular.page.HawkularAlertsSettingsPage;
 import org.qe.hawkular.page.HawkularConsoleAddUrlPage;
 import org.qe.hawkular.page.HawkularLoginPage;
 import org.qe.hawkular.page.HawkularRegistrationPage;
@@ -20,11 +19,11 @@ import org.testng.annotations.Test;
 import com.saucelabs.testng.SauceOnDemandTestListener;
 
 @Listeners({ SauceOnDemandTestListener.class })
-public class HawkularAlertsSettingsTest extends HawkularSeleniumWebDriver {
+public class HawkularMultiTenancyTest extends HawkularSeleniumWebDriver {
 
 	@BeforeSuite
 	public void prepareUser() throws MalformedURLException {
-		WebDriver driver = createDriver("safari", "6", "OSX 10.8", "homePage");
+		WebDriver driver = createDriver("firefox", "24.0", "Linux", "homePage");
 		driver.get(HawkularSeleniumWebDriver.hawkularUrl);
 		System.out.println(driver.getTitle());
 		HawkularRegistrationPage registration = new HawkularRegistrationPage(
@@ -33,11 +32,23 @@ public class HawkularAlertsSettingsTest extends HawkularSeleniumWebDriver {
 
 	}
 
+	@BeforeSuite
+	public void preparejonqeUser() throws MalformedURLException {
+		WebDriver driver = createDriver("firefox", "24.0", "Linux", "homePage");
+		driver.get(HawkularSeleniumWebDriver.hawkularUrl);
+		System.out.println(driver.getTitle());
+		HawkularRegistrationPage registration = new HawkularRegistrationPage(
+				driver);
+		registration.registerUserIfDoesNotExist(HawkularRegistrationPageConstants.username1, HawkularRegistrationPageConstants.password, HawkularRegistrationPageConstants.confirmPassword, HawkularRegistrationPageConstants.firstName1, HawkularRegistrationPageConstants.lastName1, HawkularRegistrationPageConstants.email1);
+
+	}
+
+
 	@Test(dataProvider = "browsersAndOs", dataProviderClass = HawkularDataProvider.class)
-	public void hawkularAlertsSettingsTest(String browser, String version, String os)
+	public void hawkularBasicMultiTenancyTest(String browser, String version, String os)
 			throws Exception {
 		WebDriver driver = createDriver(browser, version, os,
-				"hawkularAlertsSettingsTest");
+				"hawkularBasicMultiTenancyTest");
 
 		driver.get(HawkularSeleniumWebDriver.hawkularUrl);
 		System.out.println(driver.getTitle());
@@ -53,15 +64,27 @@ public class HawkularAlertsSettingsTest extends HawkularSeleniumWebDriver {
 		addUrlPage.typeURL(HawkularManagementConsolePageConstants.testURL);
 		addUrlPage.submitURL();
 		addUrlPage.verifyUrlExists();
-		addUrlPage.navigateToURL();
-
-		HawkularAlertsSettingsPage alertsSettings = new HawkularAlertsSettingsPage(driver);
-		alertsSettings.navigateToAllAlerts();
-		alertsSettings.verifyAllAlertsLinkPresent();
-		alertsSettings.navigateToAlertsSettings();
-		alertsSettings.verifyAlertSettingsOpened();
-
+		addUrlPage.navigateToURLsMenu();
+		loginPage.logout();
+		loginPage.loginAs(HawkularRegistrationPageConstants.username1,
+				HawkularRegistrationPageConstants.password);
+		addUrlPage.verifyConsoleImagePresent();
+		addUrlPage.verifyUrlDoesnotExist();
+		addUrlPage.typeURL(HawkularManagementConsolePageConstants.testURL);
+		addUrlPage.submitURL();
+		addUrlPage.verifyUrlExists();
+		addUrlPage.deleteURL();
+		addUrlPage.verifyUrlDoesnotExist();
+		loginPage.logout();
+		loginPage.loginAs(HawkularRegistrationPageConstants.username,
+				HawkularRegistrationPageConstants.password);
+		addUrlPage.verifyConsoleImagePresent();
+		addUrlPage.deleteURL();
+		addUrlPage.verifyUrlDoesnotExist();
+		loginPage.logout();
 		driver.quit();
 
 	}
+
 }
+

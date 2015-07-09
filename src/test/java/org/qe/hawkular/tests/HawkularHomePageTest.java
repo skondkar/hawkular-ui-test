@@ -20,95 +20,95 @@ import com.saucelabs.testng.SauceOnDemandTestListener;
 
 @Listeners({ SauceOnDemandTestListener.class })
 public class HawkularHomePageTest extends HawkularSeleniumWebDriver {
-    @BeforeSuite
-    public void prepateUser() throws MalformedURLException {
-        WebDriver driver = createDriver("firefox", "24.0", "Linux", "homePage");
-        HawkularRegistrationPage registration = new HawkularRegistrationPage(
-                driver);
-        driver.get(HawkularSeleniumWebDriver.hawkularUrl);
-        System.out.println(driver.getTitle());
-        registration.registerUserIfDoesNotExist();
+	@BeforeSuite
+	public void prepateUser() throws MalformedURLException {
+		WebDriver driver = createDriver("firefox", "24.0", "Linux", "homePage");
+		HawkularRegistrationPage registration = new HawkularRegistrationPage(
+				driver);
+		driver.get(HawkularSeleniumWebDriver.hawkularUrl);
+		System.out.println(driver.getTitle());
+		registration.registerUserIfDoesNotExist(HawkularRegistrationPageConstants.username, HawkularRegistrationPageConstants.password, HawkularRegistrationPageConstants.confirmPassword, HawkularRegistrationPageConstants.firstName, HawkularRegistrationPageConstants.lastName, HawkularRegistrationPageConstants.email);
 
-    }
+	}
 
-    @Test(dataProvider = "browsersAndOs", dataProviderClass = HawkularDataProvider.class)
-    public void hawkularAddURLTest(String browser, String version, String os)
-            throws Exception {
-        WebDriver driver = createDriver(browser, version, os,
-                "hawkularAddURLTest");
+	@Test(dataProvider = "browsersAndOs", dataProviderClass = HawkularDataProvider.class)
+	public void hawkularAddURLTest(String browser, String version, String os)
+			throws Exception {
+		WebDriver driver = createDriver(browser, version, os,
+				"hawkularAddURLTest");
 
-        driver.get(HawkularSeleniumWebDriver.hawkularUrl);
-        System.out.println(driver.getTitle());
+		driver.get(HawkularSeleniumWebDriver.hawkularUrl);
+		System.out.println(driver.getTitle());
 
-        HawkularLoginPage loginPage = new HawkularLoginPage(driver);
+		HawkularLoginPage loginPage = new HawkularLoginPage(driver);
 
-        HawkularUtils util = new HawkularUtils(driver);
-        util.assertTitle(HawkularLoginPageConstants.loginTitle);
+		HawkularUtils util = new HawkularUtils(driver);
+		util.assertTitle(HawkularLoginPageConstants.loginTitle);
 
-        loginPage.loginAs(HawkularRegistrationPageConstants.username,
-                HawkularRegistrationPageConstants.password);
+		loginPage.loginAs(HawkularRegistrationPageConstants.username,
+				HawkularRegistrationPageConstants.password);
 
-        HawkularConsoleAddUrlPage addUrlPage = new HawkularConsoleAddUrlPage(
-                driver);
-        addUrlPage.verifyConsoleImagePresent();
-        addUrlPage.typeURL(HawkularManagementConsolePageConstants.testURL);
-        addUrlPage.submitURL();
-        addUrlPage.verifyUrlExists();
-        driver.quit();
-    }
+		HawkularConsoleAddUrlPage addUrlPage = new HawkularConsoleAddUrlPage(
+				driver);
+		addUrlPage.verifyConsoleImagePresent();
+		addUrlPage.typeURL(HawkularManagementConsolePageConstants.testURL);
+		addUrlPage.submitURL();
+		addUrlPage.verifyUrlExists();
+		driver.quit();
+	}
 
-    @Test(dataProvider = "browsersAndOs", dataProviderClass = HawkularDataProvider.class, dependsOnMethods="hawkularAddURLTest")
-    public void hawkularDeleteURLTest(String browser, String version, String os)
-            throws Exception {
-        WebDriver driver = createDriver(browser, version, os,
-                "hawkularDeleteURLTest");
+	@Test(dataProvider = "browsersAndOs", dataProviderClass = HawkularDataProvider.class, dependsOnMethods="hawkularAddURLTest")
+	public void hawkularDeleteURLTest(String browser, String version, String os)
+			throws Exception {
+		WebDriver driver = createDriver(browser, version, os,
+				"hawkularDeleteURLTest");
 
-        driver.get(HawkularSeleniumWebDriver.hawkularUrl);
-        System.out.println(driver.getTitle());
+		driver.get(HawkularSeleniumWebDriver.hawkularUrl);
+		System.out.println(driver.getTitle());
 
-        HawkularLoginPage loginPage = new HawkularLoginPage(driver);
+		HawkularLoginPage loginPage = new HawkularLoginPage(driver);
 
-        HawkularUtils util = new HawkularUtils(driver);
-        util.assertTitle(HawkularLoginPageConstants.loginTitle);
+		HawkularUtils util = new HawkularUtils(driver);
+		util.assertTitle(HawkularLoginPageConstants.loginTitle);
 
-        loginPage.loginAs(HawkularRegistrationPageConstants.username,
-                HawkularRegistrationPageConstants.password);
+		loginPage.loginAs(HawkularRegistrationPageConstants.username,
+				HawkularRegistrationPageConstants.password);
 
-        HawkularConsoleAddUrlPage addUrlPage = new HawkularConsoleAddUrlPage(
-                driver);
-        addUrlPage.verifyConsoleImagePresent();
-        addUrlPage.deleteURL();
-        addUrlPage.verifyUrlDoesnotExist();
-        driver.quit();
-    }
+		HawkularConsoleAddUrlPage addUrlPage = new HawkularConsoleAddUrlPage(
+				driver);
+		addUrlPage.verifyConsoleImagePresent();
+		addUrlPage.deleteURL();
+		addUrlPage.verifyUrlDoesnotExist();
+		driver.quit();
+	}
 
-    @Test(dataProvider = "browsersAndOs", dataProviderClass = HawkularDataProvider.class)
-    public void hawkularMenuNavigationTest(String browser, String version,
-            String os) throws Exception {
-        WebDriver driver = createDriver(browser, version, os,
-                "MenuNavigationTest");
+	@Test(dataProvider = "browsersAndOs", dataProviderClass = HawkularDataProvider.class)
+	public void hawkularMenuNavigationTest(String browser, String version,
+			String os) throws Exception {
+		WebDriver driver = createDriver(browser, version, os,
+				"MenuNavigationTest");
 
-        driver.get(HawkularSeleniumWebDriver.hawkularUrl);
-        System.out.println(driver.getTitle());
+		driver.get(HawkularSeleniumWebDriver.hawkularUrl);
+		System.out.println(driver.getTitle());
 
-        HawkularLoginPage loginPage = new HawkularLoginPage(driver);
+		HawkularLoginPage loginPage = new HawkularLoginPage(driver);
 
-        HawkularUtils util = new HawkularUtils(driver);
-        util.assertTitle(HawkularLoginPageConstants.loginTitle);
+		HawkularUtils util = new HawkularUtils(driver);
+		util.assertTitle(HawkularLoginPageConstants.loginTitle);
 
-        loginPage.loginAs(HawkularRegistrationPageConstants.username,
-                HawkularRegistrationPageConstants.password);
+		loginPage.loginAs(HawkularRegistrationPageConstants.username,
+				HawkularRegistrationPageConstants.password);
 
-        HawkularConsoleAddUrlPage addUrlPage = new HawkularConsoleAddUrlPage(
-                driver);
-        addUrlPage.verifyConsoleImagePresent();
-        addUrlPage.urlsMenuExists();
-        addUrlPage.appServersMenuExists();
-        addUrlPage.navigateToAppServersMenu();
-        addUrlPage.verifyAppServersMenuNavigation();
-        addUrlPage.navigateToURLsMenu();
-        addUrlPage.verifyURLsMenuNavigation();
-        driver.quit();
+		HawkularConsoleAddUrlPage addUrlPage = new HawkularConsoleAddUrlPage(
+				driver);
+		addUrlPage.verifyConsoleImagePresent();
+		addUrlPage.urlsMenuExists();
+		addUrlPage.appServersMenuExists();
+		addUrlPage.navigateToAppServersMenu();
+		addUrlPage.verifyAppServersMenuNavigation();
+		addUrlPage.navigateToURLsMenu();
+		addUrlPage.verifyURLsMenuNavigation();
+		driver.quit();
 
-    }
+	}
 }
