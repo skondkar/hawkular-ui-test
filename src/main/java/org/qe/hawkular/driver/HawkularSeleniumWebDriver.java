@@ -13,6 +13,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
 import org.testng.annotations.Listeners;
 
 import java.net.MalformedURLException;
@@ -56,6 +58,11 @@ public class HawkularSeleniumWebDriver implements
         sessionId.set(((RemoteWebDriver) getWebDriver()).getSessionId()
                 .toString());
         return webDriver.get();
+    }
+    
+    public WebDriver createLocalDriver() throws MalformedURLException {
+        WebDriver webDriver = new FirefoxDriver();
+        return webDriver;
     }
 
     /**
