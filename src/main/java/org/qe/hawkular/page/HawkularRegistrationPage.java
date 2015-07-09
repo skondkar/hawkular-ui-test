@@ -172,19 +172,14 @@ public class HawkularRegistrationPage {
                 .isDisplayed();
     }
     
-    public void registerUserIfDoesNotExist() {
+    public void registerUserIfDoesNotExist(String username, String password, String confirmPassword, String firstName, String lastName, String email) {
         HawkularLoginPage loginPage = new HawkularLoginPage(driver);
         // try registering hawkularqe, in case it's no yet registered
         loginPage.navigateToRegistration();
 
         HawkularRegistrationPage regPage = new HawkularRegistrationPage(
                 driver);
-        regPage.register(HawkularRegistrationPageConstants.username,
-                HawkularRegistrationPageConstants.password,
-                HawkularRegistrationPageConstants.password,
-                HawkularRegistrationPageConstants.email,
-                HawkularRegistrationPageConstants.firstName,
-                HawkularRegistrationPageConstants.lastName);
+        regPage.register(username, password, confirmPassword, email, firstName, lastName);
         try {
           
             regPage.verifyRegCompleted();
