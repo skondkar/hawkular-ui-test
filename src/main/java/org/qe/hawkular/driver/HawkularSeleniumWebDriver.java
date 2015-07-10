@@ -59,11 +59,7 @@ public class HawkularSeleniumWebDriver implements
                 .toString());
         return webDriver.get();
     }
-    
-    public WebDriver createLocalDriver() throws MalformedURLException {
-        WebDriver webDriver = new FirefoxDriver();
-        return webDriver;
-    }
+ 
 
     /**
      * @return the {@link WebDriver} for the current thread
