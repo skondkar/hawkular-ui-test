@@ -13,6 +13,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
 import org.testng.annotations.Listeners;
 
 import java.net.MalformedURLException;
@@ -57,6 +59,7 @@ public class HawkularSeleniumWebDriver implements
                 .toString());
         return webDriver.get();
     }
+ 
 
     /**
      * @return the {@link WebDriver} for the current thread
