@@ -1,18 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="HawkularUITest">
-    <test name="HawkualrLoginTest">
+    <test name="HawkualrAppServerTest">
         <classes>
-            <class name="org.qe.hawkular.tests.HawkularRegistrationTest" />
-            <class name="org.qe.hawkular.tests.HawkualrLoginTest" />
-            <class name="org.qe.hawkular.tests.HawkularAlertsSettingsTest" />
-            <class name="org.qe.hawkular.tests.HawkularHomePageTest" />
-          <!--   
-          <class name="org.qe.hawkular.tests.HawkularRegistrationTest">
-            <methods>
-               <include name="hawkularRegistrationBasicTest"></include>
-            </methods>
-            </class>
-            -->
+            <class name="org.qe.hawkular.tests.HawkularAppServerTest" />
         </classes>
     </test>
 </suite>
