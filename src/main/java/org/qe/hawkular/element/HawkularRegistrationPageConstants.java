@@ -43,6 +43,13 @@ public class HawkularRegistrationPageConstants {
     public static final String firstName1 = "jon";
     public static final String lastName1 = "QE";
     public static final String email1 = "jonqe@gmail.com";
+    
+    public static final String username2 = "jdoe";
+    public static final String password2 = "password";
+    public static final String confirmPassword2 = "password";
+    public static final String firstName2 = "John";
+    public static final String lastName2 = "Doe";
+    public static final String email2 = "jdoe@hawkular.com";
 
     public static String generateUsername() {
         String generatedUsername = username + (new Date().getTime());

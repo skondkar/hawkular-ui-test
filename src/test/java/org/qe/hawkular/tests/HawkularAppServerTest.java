@@ -27,7 +27,7 @@ public class HawkularAppServerTest extends HawkularSeleniumLocalWebDriver {
         System.out.println(driver.getTitle());
         HawkularRegistrationPage registration = new HawkularRegistrationPage(
                 driver);
-        registration.registerUserIfDoesNotExist(HawkularRegistrationPageConstants.username, HawkularRegistrationPageConstants.password, HawkularRegistrationPageConstants.confirmPassword, HawkularRegistrationPageConstants.firstName, HawkularRegistrationPageConstants.lastName, HawkularRegistrationPageConstants.email);
+        registration.registerUserIfDoesNotExist(HawkularRegistrationPageConstants.username2, HawkularRegistrationPageConstants.password2, HawkularRegistrationPageConstants.confirmPassword2, HawkularRegistrationPageConstants.firstName2, HawkularRegistrationPageConstants.lastName2, HawkularRegistrationPageConstants.email2);
 
     }
 
@@ -40,8 +40,8 @@ public class HawkularAppServerTest extends HawkularSeleniumLocalWebDriver {
         HawkularLoginPage loginPage = new HawkularLoginPage(driver);
         HawkularUtils util = new HawkularUtils(driver);
         util.assertTitle(HawkularLoginPageConstants.loginTitle);
-        loginPage.loginAs(HawkularRegistrationPageConstants.username,
-                HawkularRegistrationPageConstants.password);
+        loginPage.loginAs(HawkularRegistrationPageConstants.username2,
+                HawkularRegistrationPageConstants.password2);
 
         HawkularConsoleAddUrlPage addUrlPage = new HawkularConsoleAddUrlPage(
                 driver);
@@ -65,8 +65,8 @@ public class HawkularAppServerTest extends HawkularSeleniumLocalWebDriver {
         HawkularLoginPage loginPage = new HawkularLoginPage(driver);
         HawkularUtils util = new HawkularUtils(driver);
         util.assertTitle(HawkularLoginPageConstants.loginTitle);
-        loginPage.loginAs(HawkularRegistrationPageConstants.username,
-                HawkularRegistrationPageConstants.password);
+        loginPage.loginAs(HawkularRegistrationPageConstants.username2,
+                HawkularRegistrationPageConstants.password2);
 
         HawkularConsoleAddUrlPage addUrlPage = new HawkularConsoleAddUrlPage(
                 driver);
