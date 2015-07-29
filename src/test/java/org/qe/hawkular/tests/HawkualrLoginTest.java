@@ -43,16 +43,14 @@ public class HawkualrLoginTest extends HawkularSeleniumWebDriver {
 
 		HawkularLoginPage loginPage = new HawkularLoginPage(driver);
 
-		HawkularUtils util = new HawkularUtils(driver);
-		util.assertTitle(HawkularLoginPageConstants.loginTitle);
+		loginPage.verifyLoginTitle();
 
 		loginPage = new HawkularLoginPage(driver);
 		loginPage.loginAs(HawkularRegistrationPageConstants.username,
 				HawkularRegistrationPageConstants.password);
 
-		util = new HawkularUtils(driver);
-		Assert.assertTrue(util
-				.waitForElementPresent(HawkularManagementConsolePageConstants.consoleImageAltLocator));
+		HawkularUtils util = new HawkularUtils(driver);
+		util.assertElementPresent(HawkularManagementConsolePageConstants.consoleImageAltLocator);
 		driver.quit();
 	}
 
@@ -67,8 +65,7 @@ public class HawkualrLoginTest extends HawkularSeleniumWebDriver {
 
 		HawkularLoginPage loginPage = new HawkularLoginPage(driver);
 
-		HawkularUtils util = new HawkularUtils(driver);
-		util.assertTitle(HawkularLoginPageConstants.loginTitle);
+		loginPage.verifyLoginTitle();
 
 		loginPage = new HawkularLoginPage(driver);
 		loginPage.loginAs("",
@@ -89,8 +86,7 @@ public class HawkualrLoginTest extends HawkularSeleniumWebDriver {
 
 		HawkularLoginPage loginPage = new HawkularLoginPage(driver);
 
-		HawkularUtils util = new HawkularUtils(driver);
-		util.assertTitle(HawkularLoginPageConstants.loginTitle);
+		loginPage.verifyLoginTitle();
 
 		loginPage = new HawkularLoginPage(driver);
 		loginPage.loginAs(HawkularRegistrationPageConstants.username,
@@ -110,8 +106,7 @@ public class HawkualrLoginTest extends HawkularSeleniumWebDriver {
 
 		HawkularLoginPage loginPage = new HawkularLoginPage(driver);
 
-		HawkularUtils util = new HawkularUtils(driver);
-		util.assertTitle(HawkularLoginPageConstants.loginTitle);
+		loginPage.verifyLoginTitle();
 
 		loginPage.loginAs(HawkularRegistrationPageConstants.username,
 				HawkularRegistrationPageConstants.password);
