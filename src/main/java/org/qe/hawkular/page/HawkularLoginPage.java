@@ -74,5 +74,16 @@ public class HawkularLoginPage {
         HawkularUtils util = new HawkularUtils(driver);
         return util.waitForElementPresent(invalidUsernamePasswordError);
 
+ 
     }
+    
+    
+    
+    public boolean verifyLoginTitle(){
+    	
+    	HawkularUtils util = new HawkularUtils(driver);
+		return util.assertTitle(HawkularLoginPageConstants.loginTitle);
+    } 
 }
+
+
