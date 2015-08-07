@@ -52,6 +52,7 @@ public class HawkularAppServerTest extends HawkularSeleniumLocalWebDriver {
         appServerPage.verifyLocalAppServerExists();
         appServerPage.navigateTOLocalAppServer();
         appServerPage.verifyAppServerJVMTabNavigation();
+        loginPage.logout();
         driver.quit();
         
     }
@@ -80,6 +81,30 @@ public class HawkularAppServerTest extends HawkularSeleniumLocalWebDriver {
         appServerPage.navigateTODeploymentsTab();
         appServerPage.verifyAppServerDeploymentsTabNavigation();
         appServerPage.verifyAppServerWarExists();
+        driver.quit();
+        
+    }
+    
+    @Test
+    public void hawkularURLTraitsTest() throws Exception {
+        WebDriver driver = createLocalDriver();
+
+        driver.get(HawkularSeleniumWebDriver.hawkularUrl);
+        System.out.println(driver.getTitle());
+        HawkularLoginPage loginPage = new HawkularLoginPage(driver);
+        HawkularUtils util = new HawkularUtils(driver);
+        util.assertTitle(HawkularLoginPageConstants.loginTitle);
+        loginPage.loginAs(HawkularRegistrationPageConstants.username2,
+                HawkularRegistrationPageConstants.password2);
+
+        HawkularConsoleAddUrlPage addUrlPage = new HawkularConsoleAddUrlPage(
+                driver);
+        addUrlPage.verifyConsoleImagePresent();
+        addUrlPage.addURLIfDoesNotExist(HawkularManagementConsolePageConstants.testURL);
+        addUrlPage.verifyURLTraitsExists();
+        addUrlPage.deleteURL();
+        addUrlPage.verifyUrlDoesnotExist();
+        loginPage.logout();
         driver.quit();
         
     }

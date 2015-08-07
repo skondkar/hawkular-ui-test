@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.qe.hawkular.element.HawkularManagementConsolePageConstants;
 import org.qe.hawkular.util.HawkularUtils;
+import org.openqa.selenium.WebElement;
 
 public class HawkularConsoleAddUrlPage {
 
@@ -20,6 +21,8 @@ public class HawkularConsoleAddUrlPage {
     By addUrlMsg = HawkularManagementConsolePageConstants.addUrlMsg;
     By deleteButtonLocator = HawkularManagementConsolePageConstants.deleteButtonLocator;
     By confirmDelete = HawkularManagementConsolePageConstants.confirmDelete;
+    By urlTraits = HawkularManagementConsolePageConstants.urlTraits;
+    By urlIPLocator = HawkularManagementConsolePageConstants.urlIPLocator;
 
     public HawkularConsoleAddUrlPage(WebDriver driver) {
 
@@ -109,5 +112,25 @@ public class HawkularConsoleAddUrlPage {
         HawkularUtils util = new HawkularUtils(driver);
         return util.waitForElementPresent(urlLocator);
     }
+    
+    public void verifyURLTraitsExists() {
+        HawkularUtils util = new HawkularUtils(driver);
+        Assert.assertTrue(util.waitForElementPresent(urlIPLocator));
+        WebElement URLServerTraits = driver.findElement(urlTraits);
+        System.out.println("URL Server Traits are: " + URLServerTraits.getText());
+        Assert.assertTrue(URLServerTraits.getText().contains("IP:"));
+        Assert.assertTrue(URLServerTraits.getText().contains("Powered by:"));
+
+    }
+    public void addURLIfDoesNotExist(String URL) {
+        if(!driver.findElements(By.linkText("http://"+URL)).isEmpty()){
+
+            }
+            else{
+                this.typeURL(URL);
+                this.submitURL();
+                this.verifyAddUrlMsg();
+            }
+        }
 
 }
