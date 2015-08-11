@@ -17,4 +17,6 @@ public class HawkularManagementConsolePageConstants {
    public static final By deleteButtonLocator =  By.xpath("//*[text() = 'http://"+testURL+"']/../..//button");
    public static final By confirmDelete =  By.xpath("//button[text()='Delete']");
    public static final By errorAlert =  By.xpath("//*[@class='toast-message']");
+   public static final By urlIPLocator = By.xpath("//*[contains(text(),'IP:')]");
+   public static final By urlTraits =  By.xpath("//*[text() = 'http://"+testURL+"']/../..//span");
 }
